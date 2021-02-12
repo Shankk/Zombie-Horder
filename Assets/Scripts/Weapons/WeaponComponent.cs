@@ -34,15 +34,15 @@ namespace Weapons
     {
         public Transform GripLocation => GripIKLocation;
         [SerializeField] private Transform GripIKLocation;
-  
+
         public WeaponStats WeaponInformation => WeaponStats;
-  
+
         [SerializeField] protected WeaponStats WeaponStats;
 
         protected Camera MainCamera;
         protected WeaponHolder WeaponHolder;
         protected CrossHairScript CrosshairComponent;
-  
+
         public bool Firing { get; private set; }
         public bool Reloading { get; private set; }
 
@@ -68,8 +68,8 @@ namespace Weapons
             {
                 FireWeapon();
             }
-        } 
-  
+        }
+
         public virtual void StopFiringWeapon()
         {
             Firing = false;

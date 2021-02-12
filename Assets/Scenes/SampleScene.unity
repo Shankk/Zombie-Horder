@@ -336,7 +336,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &705507995
@@ -411,7 +410,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &705722948
 Canvas:
   m_ObjectHideFlags: 0
@@ -531,7 +529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.459699, y: 1.0330703, z: -11.6430235}
+  m_LocalPosition: {x: 21.025002, y: 1.0330703, z: -25.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -971,7 +969,7 @@ Transform:
   m_GameObject: {fileID: 1119963027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.43195388, y: -1.0759311, z: 1.1778895}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -982,7 +980,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16762
+  m_Name: pb_Mesh16124
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1200,7 +1198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707306252}
   m_LocalRotation: {x: -0.13043645, y: 0.0020793723, z: -0.0002733868, w: -0.9914545}
-  m_LocalPosition: {x: 12.459699, y: 1.0330703, z: -11.6430235}
+  m_LocalPosition: {x: 21.025002, y: 1.0330703, z: -25.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 64559251}
@@ -1302,7 +1300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998112778911448168, guid: 379838ed2fbafd7479da3b59b234d59a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.724699
+      value: 20.29
       objectReference: {fileID: 0}
     - target: {fileID: 4998112778911448168, guid: 379838ed2fbafd7479da3b59b234d59a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1310,7 +1308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998112778911448168, guid: 379838ed2fbafd7479da3b59b234d59a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.3930235
+      value: -23.15
       objectReference: {fileID: 0}
     - target: {fileID: 4998112778911448168, guid: 379838ed2fbafd7479da3b59b234d59a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -17,18 +17,18 @@ namespace Character
         private Transform GripIKLocation;
         private bool WasFiring = false;
         private bool FiringPressed = false;
-        
+
         //Components
         public PlayerController Controller => PlayerController;
         private PlayerController PlayerController;
-        
+
         private CrossHairScript PlayerCrosshair;
         private Animator PlayerAnimator;
-        
+
         //Ref
         private Camera ViewCamera;
         private WeaponComponent EquippedWeapon;
-        
+
         private static readonly int AimHorizontalHash = Animator.StringToHash("AimHorizontal");
         private static readonly int AimVerticalHash = Animator.StringToHash("AimVertical");
         private static readonly int IsFiringHash = Animator.StringToHash("IsFiring");
@@ -39,14 +39,14 @@ namespace Character
         private new void Awake()
         {
             base.Awake();
-            
+
             PlayerAnimator = GetComponent<Animator>();
             PlayerController = GetComponent<PlayerController>();
             if (PlayerController)
             {
                 PlayerCrosshair = PlayerController.CrossHair;
             }
-            
+
             ViewCamera = Camera.main;
         }
 
@@ -55,12 +55,12 @@ namespace Character
         {
             GameObject spawnedWeapon = Instantiate(WeaponToSpawn, WeaponSocketLocation.position, WeaponSocketLocation.rotation, WeaponSocketLocation);
             if (!spawnedWeapon) return;
-            
+
             EquippedWeapon = spawnedWeapon.GetComponent<WeaponComponent>();
             if (!EquippedWeapon) return;
-            
+
             EquippedWeapon.Initialize(this, PlayerCrosshair);
-            
+
             GripIKLocation = EquippedWeapon.GripLocation;
             PlayerAnimator.SetInteger(WeaponTypeHash, (int)EquippedWeapon.WeaponInformation.WeaponType);
         }
@@ -70,16 +70,16 @@ namespace Character
             PlayerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
             PlayerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, GripIKLocation.position);
         }
-        
+
         private void OnFire(InputAction.CallbackContext pressed)
         {
             FiringPressed = pressed.ReadValue<float>() == 1f ? true : false;
-            
+
             if (FiringPressed)
                 StartFiring();
             else
                 StopFiring();
-            
+
         }
 
         private void StartFiring()
@@ -87,7 +87,7 @@ namespace Character
             //TODO: Weapon Seems to be reloading after no bullets left
             if (EquippedWeapon.WeaponInformation.BulletsAvailable <= 0 &&
                 EquippedWeapon.WeaponInformation.BulletsInClip <= 0) return;
-       
+
             PlayerController.IsFiring = true;
             PlayerAnimator.SetBool(IsFiringHash, true);
             EquippedWeapon.StartFiringWeapon();
@@ -100,7 +100,7 @@ namespace Character
             EquippedWeapon.StopFiringWeapon();
         }
 
-        
+
         private void OnReload(InputValue button)
         {
             StartReloading();
@@ -117,40 +117,40 @@ namespace Character
             PlayerController.IsReloading = true;
             PlayerAnimator.SetBool(IsReloadingHash, true);
             EquippedWeapon.StartReloading();
-            
+
             InvokeRepeating(nameof(StopReloading), 0, .1f);
         }
-        
+
         private void StopReloading()
         {
             if (PlayerAnimator.GetBool(IsReloadingHash)) return;
-            
+
             PlayerController.IsReloading = false;
             EquippedWeapon.StopReloading();
             CancelInvoke(nameof(StopReloading));
-            
+
             if (!WasFiring || !FiringPressed) return;
-            
+
             StartFiring();
             WasFiring = false;
         }
-        
+
         private void OnLook(InputAction.CallbackContext obj)
         {
             Vector3 independentMousePosition = ViewCamera.ScreenToViewportPoint(PlayerCrosshair.CurrentAimPosition);
-            
+
             PlayerAnimator.SetFloat(AimHorizontalHash, independentMousePosition.x);
             PlayerAnimator.SetFloat(AimVerticalHash, independentMousePosition.y);
         }
-        
+
         private new void OnEnable()
         {
             base.OnEnable();
             GameInput.PlayerActionMap.Look.performed += OnLook;
             GameInput.PlayerActionMap.Fire.performed += OnFire;
-            
+
         }
-        
+
         private new void OnDisable()
         {
             base.OnDisable();
